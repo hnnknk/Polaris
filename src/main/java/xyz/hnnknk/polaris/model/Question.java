@@ -3,7 +3,9 @@ package xyz.hnnknk.polaris.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -20,6 +22,9 @@ public class Question {
     @NotNull
     @Column
     private boolean isOneAnswer;
+
+    @OneToMany(targetEntity = Option.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Option> options;
 
     public Question() {
     }
@@ -51,6 +56,14 @@ public class Question {
 
     public void setOneAnswer(boolean oneAnswer) {
         isOneAnswer = oneAnswer;
+    }
+
+    public List<Option> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<Option> options) {
+        this.options = options;
     }
 
     @Override

@@ -2,7 +2,9 @@ package xyz.hnnknk.polaris.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -15,6 +17,12 @@ public class Test {
     @NotBlank
     @Column
     private String name;
+
+    @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY)
+    private Author author;
+
+    @OneToMany(targetEntity = Question.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Question> questions;
 
     public Test() {
     }
@@ -33,6 +41,22 @@ public class Test {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package xyz.hnnknk.polaris.config;
+package xyz.hnnknk.polaris;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

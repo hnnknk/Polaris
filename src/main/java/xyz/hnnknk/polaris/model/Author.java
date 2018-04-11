@@ -3,7 +3,9 @@ package xyz.hnnknk.polaris.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -24,6 +26,9 @@ public class Author {
     @Email
     @Column
     private String email;
+
+    @OneToMany(targetEntity = Test.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Test> tests;
 
     public Author() {
     }
@@ -64,6 +69,14 @@ public class Author {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 
     @Override
